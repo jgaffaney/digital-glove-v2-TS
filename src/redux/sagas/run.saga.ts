@@ -15,7 +15,7 @@ const getRun = (action: BeginRun): any => {
 
 
 
-function* beginRun(action: AnyAction) {
+function* beginRun(action: BeginRun) {
     try{
         console.log('action in beginRun: ', action);
         console.log('action.payload.id: ', action.payload);
