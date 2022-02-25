@@ -1,0 +1,6 @@
+export enum userTypes {
+    SET_USER = 'SET_USER',
+    UNSET_USER = 'UNSET_USER',
+    FETCH_USER = 'FETCH_USER',
+    POST_USER_LAYOUT = 'POST_USER_LAYOUT'
+}
