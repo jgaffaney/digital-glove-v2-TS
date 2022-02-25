@@ -2,6 +2,9 @@ import { treatmentTypes } from "../ActionTypes/treatmentTypes";
 import { runTypes } from '../ActionTypes/runTypes';
 import { userTypes } from "../ActionTypes/userTypes";
 import { errorTypes } from "../ActionTypes/errorTypes";
+import { useHistory } from 'react-router-dom';
+
+export type History = ReturnType<typeof useHistory>;
 
 export interface Treatment {
     id: number;
@@ -66,7 +69,7 @@ export interface SetRunDetails {
 
 export interface BeginRun {
     type: string;
-    payload: {id: number};
+    payload: User;
     history?: any;
 }
 

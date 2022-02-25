@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 import { IRun } from '../models/IRun';
-import { BeginRun, DeleteRun, FetchRun } from '../types/types';
+import { BeginRun, DeleteRun, FetchRun, Run } from '../types/types';
+import { AnyAction } from 'redux';
 
 
 const postRun = (action: BeginRun): any => {
@@ -9,21 +10,21 @@ const postRun = (action: BeginRun): any => {
 };
 
 const getRun = (action: BeginRun): any => {
-    axios.get<IRun[]>(`/api/run/${action.payload.id}`)
+    axios.get(`/api/run/${action.payload.id}`)
 }
 
 
 
-function* beginRun(action: BeginRun): ReturnType<typeof getRun> {
+function* beginRun(action: AnyAction) {
     try{
         console.log('action in beginRun: ', action);
         console.log('action.payload.id: ', action.payload);
         
-        const currentRun: {data: {rows: IRun[]}} = yield axios.get(`/api/run/${action.payload.id}`);
-        // console.log('currentRun id in beginRun: ', currentRun.data.rows[0].id);
+        const currentRun: {data: {rows: Run[]}} = yield axios.post('/api/run/begin', action.payload);
+        console.log('currentRun id in beginRun: ', currentRun.data.rows[0]);
         yield axios.put('/api/run/currentRun', {run: currentRun.data.rows[0]})
         yield put({type: 'SET_CURRENT_RUN', payload: currentRun.data.rows[0]})
-        const response = yield axios.get<IRun[]>(`/api/run/${action.payload.id}`);
+        const response: {data: Run[]} = yield axios.get(`/api/run/${action.payload.id}`)
         console.log('response.data: ', response.data);
         yield put({type: 'SET_RUNS', payload: response.data})
         action.history.push('/mainMenu')

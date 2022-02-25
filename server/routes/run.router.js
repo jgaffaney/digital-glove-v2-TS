@@ -7,18 +7,25 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
  * GET route template
  */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
+    console.log('in router.get/:id on runRounter');
+    
     const id = req.params.id
 
     // GET route code here
     const queryText = `
     SELECT * from runs
     WHERE "user_id" = $1
-    ORDER BY start_timestamp DESC;
+    ORDER BY start_timestamp DESC
+    LIMIT 1;
   `
     pool.query(queryText, [id])
         .then(response => {
+            console.log(response);
+            
             res.send(response.rows)
-        }).catch(err => {
+        }).catch((err) => {
+            console.log('error on get/:id: ', err);
+            
             res.sendStatus(500);
         })
 });
