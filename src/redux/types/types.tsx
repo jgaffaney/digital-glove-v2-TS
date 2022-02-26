@@ -2,36 +2,36 @@ import { treatmentTypes } from "../ActionTypes/treatmentTypes";
 import { runTypes } from '../ActionTypes/runTypes';
 import { userTypes } from "../ActionTypes/userTypes";
 import { errorTypes } from "../ActionTypes/errorTypes";
-import { useHistory } from 'react-router-dom';
 
-export type History = ReturnType<typeof useHistory>;
 
 export interface Treatment {
     id: number;
-    category: string;
+    category?: string;
     procedure: string;
+    timestamp?: string;
 }
 export interface Run {
-    id: number,
-    start_timestamp :string,
-    end_timestamp?: string,
-    user_id?: number
+    id: number;
+    start_timestamp :string;
+    end_timestamp?: string;
+    user_id?: number;
 }
 
 export interface Event {
-    procedure: string,
-    timestamp: string,
-    id: number
+    procedure: string;
+    timestamp: string;
+    id: number;
+    event_id?: number;
 }
 
 export interface User {
-    access: number[],
-    airway: number[],
-    chest: number[],
-    medication: number[],
-    clearance_level: number,
-    id: number,
-    username: string
+    access: number[];
+    airway: number[];
+    chest: number[];
+    medication: number[];
+    clearance_level: number;
+    id: number;
+    username: string;
 }
 
 export interface SetAllTreatments {
@@ -46,6 +46,36 @@ export interface SetCurrentTreatments {
 export interface SetTreatments {
     type: typeof treatmentTypes.SET_TREATMENTS;
     payload: Treatment;
+}
+
+export interface AddTxEvent {
+    type: string;
+    payload: Run;
+    treatment: Treatment;
+}
+
+export interface FetchTx {
+    type: string;
+    payload: string;
+}
+
+export interface FetchCurrentTX {
+    type: string;
+    payload: Event;
+    history?: any;
+}
+
+export interface DeleteTx {
+    type: string;
+    payload: number;
+    run: Run;
+    runID: number;
+    history?: any;
+}
+
+export interface EditTx {
+    type: string;
+    payload: Event;
 }
 
 export interface SetCurrentRun {

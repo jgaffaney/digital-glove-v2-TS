@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-import { AnyAction } from 'redux';
-import { Treatment } from '../types/types';
+import { Treatment, AddTxEvent, FetchTx, FetchCurrentTX, DeleteTx, EditTx } from '../types/types';
 
-function* fetchTreatments(action: AnyAction) {
+function* fetchTreatments(action: FetchTx) {
     const category = action.payload.toLowerCase();
     
     try {
@@ -17,7 +16,7 @@ function* fetchTreatments(action: AnyAction) {
     }
 }
 
-function* addTxEvent(action: AnyAction) {
+function* addTxEvent(action: AddTxEvent) {
     console.log('action in addTxEvent: ', action);
     
     try {
@@ -29,7 +28,7 @@ function* addTxEvent(action: AnyAction) {
     }
 }
 
-function* fetchCurrentTreatment(action: AnyAction) {
+function* fetchCurrentTreatment(action: FetchCurrentTX) {
     console.log('in fetchCurrentTx saga with action: ', action);
     try {
         const response: {data: Treatment[]} = yield axios.get(`/api/treatments/current/${action.payload.id}`)
@@ -40,7 +39,7 @@ function* fetchCurrentTreatment(action: AnyAction) {
     }
 }
 
-function* deleteTreatment(action: AnyAction) {
+function* deleteTreatment(action: DeleteTx) {
     console.log('action in deleteTx: ', action);
     
     try {
@@ -61,7 +60,7 @@ function* fetchAllTreatments() {
     }
 }
 
-function* editTreatment(action: AnyAction) {
+function* editTreatment(action: EditTx) {
     console.log('action in edit treatment: ',  action);
     try {
             yield axios.put(`api/treatments/${action.payload.id}`, {treatment: action.payload});

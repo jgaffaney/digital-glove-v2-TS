@@ -2,7 +2,6 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 import { IRun } from '../models/IRun';
 import { BeginRun, DeleteRun, FetchRun, Run } from '../types/types';
-import { AnyAction } from 'redux';
 
 
 const postRun = (action: BeginRun): any => {

@@ -7,7 +7,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
  * GET route template
  */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-    console.log('in router.get/:id on runRounter');
+    console.log('in router.get/:id on runRouter');
     
     const id = req.params.id
 
