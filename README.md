@@ -1,121 +1,64 @@
+![License](https://img.shields.io/github/license/jgaffaney/https://github.com/jgaffaney/digital-glove.svg?style=for-the-badge) ![Repo Size](https://img.shields.io/github/languages/code-size/jgaffaney/https://github.com/jgaffaney/digital-glove.svg?style=for-the-badge) ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/jgaffaney/https://github.com/jgaffaney/digital-glove.svg?style=for-the-badge) ![FORKS](https://img.shields.io/github/forks/jgaffaney/https://github.com/jgaffaney/digital-glove.svg?style=for-the-badge&social) ![Stars](https://img.shields.io/github/stars/jgaffaney/https://github.com/jgaffaney/digital-glove.svg?style=for-the-badge)
+    
+# Digital Glove
 
-# EDA Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+## Table of Contents
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+- [Description](#description)
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Find it Online](#find-it-online)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+- [Contacts](#contacts)
 
-## Use the Template for This Repository (Don't Clone)
+## Description
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
+Digital Glove is a purposefully simple web app that allows first responders to record treatments and timestamps during an emergency cardiac arrest call.  The app will save all the information for later use when the first responder is documenting their call.  This will lead to more accurate data, which can only lead to better research and better outcomes in cardiac arrest management.
 
+Version 2 is a refactoring of the code into Typescript
 
-## Prerequisites
+## Built With
 
-Before you get started, make sure you have the following software installed on your computer:
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" height="40px" width="40px" /></a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" height="40px" width="40px" /></a><a href="https://material-ui.com/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/materialui/materialui-original.svg" height="40px" width="40px" /></a><a href="https://nodejs.org/en/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" height="40px" width="40px" /></a><a href="https://www.postgresql.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" height="40px" width="40px" /></a><a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40px" width="40px" /></a><a href="https://redux.js.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" height="40px" width="40px" /></a>
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+## Getting Started
 
-## Create database and table
+This web app is written on a Node.js and Express server.  These must be installed before using this app.  
 
-Create a new database called `prime_app` and create a `user` table:
+### Prerequisites
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+What do I need to install before I can run your project
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+### Installation
 
-## Development Setup Instructions
+1. Fork and clone the repository
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+2. `npm install`
 
-## Debugging
+3.`npm run server`
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+4.`npm run client`
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+## Usage
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+The app starts with the user selecting a new call.  When arriving at the patient's side, the user will click "At Patient" which will initiate a run in the database and be ready to record interventions.  From there, a user can select from one of 4 categories of treatment and then select a treatment.  Selecting the treatment will automatically record that treatment and timestamp and, for medications, display the time so the user can easily recall the time of the last administration
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+## Find it Online
 
-## Testing Routes with Postman
+The app is hosted on heroku at <a href="https://digital-glove.herokuapp.com/#/home">Digital Glove</a>.  Users can log in with username: Guest, pw: guest to look around and see how it works
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+## License
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
+<a href="https://choosealicense.com/licenses/mit/"><img src="https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/mit.svg" height=40 />MIT License</a>
 
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
+## Acknowledgements
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+Who helped you make this project a reality? Friends? Family? Contributors? Instructors?
 
-## Production Build
+## Contacts
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+<a href="https://www.linkedin.com/in/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>  <a href="mailto:"><img src=https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/email_me_button_icon_151852.svg /></a>
